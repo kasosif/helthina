@@ -63,7 +63,7 @@
             <div class="row art-box">
                 @foreach($latest_articles as $article)
                     <div class="col">
-                        <img class="img-fluid box" data-bss-hover-animate="pulse" src="{{asset('article_images/'.$article->images)}}">
+                        <img class="img-fluid box" data-bss-hover-animate="pulse" src="{{asset('uploads/article_images/'.$article->images)}}">
                         <a href="{{route('front.single_article',['id' => $article->id])}}">
                             <p class="artcle-sous">{{$article->title}}<br></p>
                         </a>
@@ -125,9 +125,11 @@
                     @foreach($most_rated_recipes as $recipe)
                         <div class="col-md-6 col-lg-4 item" style="margin-top: 100px;">
                             <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="100" class="box1">
-                                <img class="rounded-circle img-fluid" data-bss-hover-animate="pulse" src="{{asset('recipe_images/'.$recipe->image)}}" style="margin-top: -100px;width: 159px;">
+                                <img class="rounded-circle img-fluid" data-bss-hover-animate="pulse" src="{{asset('uploads/recipe_images/'.$recipe->image)}}" style="margin-top: -100px;width: 159px;">
                                 <h3 class="name"><strong>{{$recipe->title}}</strong><br></h3>
-                                <p class="title"><i class="fa fa-star" style="color: var(--yellow);"></i><i class="fa fa-star" style="color: var(--yellow);"></i><i class="fa fa-star" style="color: var(--yellow);"></i><i class="fa fa-star" style="color: var(--yellow);"></i></p>
+                                <p class="title">
+                                    {{generate_stars($recipe->getScore(),'<i class="fa fa-star" style="color: var(--yellow);"></i>','<i class="fa fa-star-o"></i>')}}
+                                </p>
                                 <p class="description">{{$recipe->description}}<br></p>
                                 <a class="btn btn-secondary btn-action" role="button" data-bss-hover-animate="pulse" style="margin: 40px;" href="{{route('front.single_recipe',['id' => $recipe->id])}}">Voir<br></a>
                             </div>
