@@ -103,7 +103,7 @@
                     <h3 style="font-family: 'poppins', ;font-size: 18px;">A propos<br></h3>
                     <ul>
                         <li><a href="#"></a></li>
-                        <li style="font-family: 'poppins', ;"><br><a href="https://lactualite.com/culture/que-sommes-nous/"><span style="text-decoration: underline;">Que sommes-nous?</span></a><br></li>
+                        <li style="font-family: 'poppins', ;"><br><a href="{{route('front.nous')}}"><span style="text-decoration: underline;">Qui sommes-nous?</span></a><br></li>
                         <li><a href="#"></a></li>
                     </ul>
                 </div>

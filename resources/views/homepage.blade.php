@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 align-self-center">
-                    <h1 class="header-text">Balance votre vie,<br>Manger Healthy<br></h1>
+                    <h1 class="header-text">Balancez votre vie,<br>Mangez Healthy<br></h1>
                     <p class="lead">Trouvez le meilleur endroit pour savourer votre prochain repas sain<br></p><a class="btn btn-secondary home-btn" role="button" href="{{route('front.adresse')}}" style="box-shadow: 0px 0px 19px rgba(33,33,33,0.25);margin-left: 0px;margin-top: 10px;">Découvrir<br></a>
                 </div>
                 <div class="col-md-6" style="text-align: center;"><img class="img-fluid homeimg" src="assets/img/blog bg.png"></div>
@@ -63,7 +63,7 @@
             <div class="row art-box">
                 @foreach($latest_articles as $article)
                     <div class="col">
-                        <img class="img-fluid box" data-bss-hover-animate="pulse" src="{{asset('uploads/article_images/'.$article->images)}}">
+                        <img class="img-fluid box" data-bss-hover-animate="pulse" src="{{asset('uploads/article_images/'.$article->image)}}">
                         <a href="{{route('front.single_article',['id' => $article->id])}}">
                             <p class="artcle-sous">{{$article->title}}<br></p>
                         </a>

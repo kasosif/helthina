@@ -20,6 +20,15 @@ Route::get('/forum','HomeController@forum')->name('front.forum');
 Route::get('/recette/{id}','HomeController@singlerecipe')->name('front.single_recipe');
 Route::get('/article/{id}','HomeController@singlearticle')->name('front.single_article');
 Route::view('/whyhealthi','whyhealthi')->name('front.whyhealthy');
+Route::view('/nous','nous')->name('front.nous');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group([
+    'prefix' => 'dash',
+    'middleware' => ['auth'] ,
+    'as' => 'dash.'
+],function () {
+    Route::get('/', 'DashController@index')->name('home');
+});

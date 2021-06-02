@@ -701,7 +701,7 @@ a:hover {
 }
 
 .header-text {
-  font-size: 58px;
+  font-size: 56px;
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -798,7 +798,7 @@ a:hover {
   background-size: 400% 400%;
   animation: bganimation 8s infinite;
   padding: 0px;
-  
+
 }
 
 @keyframes bganimation {
