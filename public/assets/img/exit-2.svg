@@ -1,0 +1,13 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100px; height: 100px;"><style>
+     .line-exit2 {animation:line-exit2 2s infinite;}
+     @keyframes line-exit2 {
+         0%{transform:translate3d(0, 0px, 0);}
+         50%{transform:translate3d(4px, 0, 0);}
+         100%{transform:translate3d(0, 0px, 0);}
+     }
+     @media (prefers-reduced-motion: reduce) {
+         .line-exit2 {
+             animation: none;
+         }
+     }
+    </style><path class="line-exit2 stroke2" d="M31 50.9969L86 50.9969M86 50.9969L72.0593 65M86 50.9969L72.0593 37.2917" stroke="#000" stroke-width="4.0px" stroke-linecap="round" style="animation-duration: 1.7s;"></path><path class="stroke1" d="M50.5 13L17.5 13C15.2909 13 13.5 14.7909 13.5 17L13.5 84C13.5 86.2091 15.2909 88 17.5 88L50.5 88" stroke="#000" stroke-width="4.0px" style="animation-duration: 1.7s;"></path></svg>
