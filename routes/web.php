@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','HomeController@accueil')->name('front.home');
 Route::get('/articles','HomeController@articles')->name('front.articles');
+Route::get('/recettes/{categorie}','HomeController@recettes')->name('front.recettes');
+Route::get('/adresse','HomeController@adresse')->name('front.adresse');
+Route::get('/adresseWeb','HomeController@adresseWeb')->name('front.adresseWeb');
+Route::get('/forum','HomeController@forum')->name('front.forum');
 
 Auth::routes();
 
