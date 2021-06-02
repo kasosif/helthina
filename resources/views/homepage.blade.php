@@ -128,7 +128,7 @@
                                 <img class="rounded-circle img-fluid" data-bss-hover-animate="pulse" src="{{asset('uploads/recipe_images/'.$recipe->image)}}" style="margin-top: -100px;width: 159px;">
                                 <h3 class="name"><strong>{{$recipe->title}}</strong><br></h3>
                                 <p class="title">
-                                    {{generate_stars($recipe->getScore(),'<i class="fa fa-star" style="color: var(--yellow);"></i>','<i class="fa fa-star-o"></i>')}}
+                                    {!! generate_stars($recipe->getScore(),'<i class="fa fa-star" style="color: var(--yellow);"></i>','<i class="fa fa-star-o"></i>') !!}
                                 </p>
                                 <p class="description">{{$recipe->description}}<br></p>
                                 <a class="btn btn-secondary btn-action" role="button" data-bss-hover-animate="pulse" style="margin: 40px;" href="{{route('front.single_recipe',['id' => $recipe->id])}}">Voir<br></a>

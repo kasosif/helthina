@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Adresse;
 use App\Article;
 use App\Recipe;
+use App\WebAdresse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,22 +24,26 @@ class HomeController extends Controller
 
     public function articles()
     {
-        return view('articles');
+        $articles = Article::latest()->paginate(4);
+        return view('articles',compact('articles'));
     }
 
     public function recettes($categorie)
     {
-        return view('recettes');
+        $recipes = Recipe::where('category',$categorie)->latest()->paginate(4);
+        return view('recettes',compact('recipes'));
     }
 
     public function adresse()
     {
-        return view('adresse');
+        $adresses = Adresse::latest()->paginate(4);
+        return view('adresse', compact('adresses'));
     }
 
     public function adresseWeb()
     {
-        return view('adresseWeb');
+        $wadresses = WebAdresse::latest()->get();
+        return view('adresseWeb',compact('wadresses'));
     }
 
     public function forum()
