@@ -17,7 +17,9 @@ Route::get('/recettes/{categorie}','HomeController@recettes')->name('front.recet
 Route::get('/adresse','HomeController@adresse')->name('front.adresse');
 Route::get('/adresseWeb','HomeController@adresseWeb')->name('front.adresseWeb');
 Route::get('/forum','HomeController@forum')->name('front.forum');
-
+Route::get('/recette/{id}','HomeController@singlerecipe')->name('front.single_recipe');
+Route::get('/article/{id}','HomeController@singlearticle')->name('front.single_article');
+Route::view('/whyhealthi','whyhealthi')->name('front.whyhealthy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

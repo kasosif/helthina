@@ -18,9 +18,11 @@ class CreateRecipesTable extends Migration
             $table->string('title');
             $table->string('author_name');
             $table->string('category');
+            $table->string('image')->default('default.jpg');
             $table->integer('preparation_time');
             $table->integer('number_person');
             $table->text('body');
+            $table->string('description');
             $table->string('tip');
             $table->timestamps();
         });

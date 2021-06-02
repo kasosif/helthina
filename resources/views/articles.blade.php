@@ -37,20 +37,5 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="title">Qu'est-ce que "manger sain"? Même la science a du mal à le définir<br></h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col"><img class="img-fluid img-artc1 box" src="assets/img/Rectangle%20380.png"></div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <p class="paragraphe"><br>ALIMENTATION - On le sait, les cinq fruits et légumes par jour sont nécessaires mais ne suffisent pas pour dire que l’on “mange sain”. Il faudrait aussi manger moins de viande rouge. Boire du café, mais pas trop. Privilégier les céréales complètes. Voilà pour la théorie.<br><br><br>Car dès lors qu’on tente de se rapprocher au mieux d’une alimentation bonne pour notre santé, il faut être prêt à se perdre dans les méandres des publications et recommandations scientifiques sur le sujet. En effet, les études se succèdent et sont souvent contradictoires. Pourquoi est-ce si compliqué pour les scientifiques de décrire un régime sain? À vrai dire, ce n’est pas si étonnant.<br><br>Réfléchissez par exemple à la quantité de tomates, de pommes ou de pâtes que vous avez consommée la semaine passée. Êtes-vous capable de vous en souvenir? Et si l’on vous posait la même question sur votre consommation de l’année passée? Ou pendant votre adolescence?<br><br><a href="#" style="font-weight: bold;">Continuer&nbsp;&nbsp;</a><br></p>
-        </div>
-    </div>
-</div>
 @endsection
 @section('jspage') @endsection
