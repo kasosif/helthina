@@ -18,4 +18,10 @@ class Recipe extends Model
     public function steps() {
         return $this->hasMany(Step::class);
     }
+
+    public function getScore () {
+        return $this->ratings()
+            ->average('mark');
+    }
+
 }
