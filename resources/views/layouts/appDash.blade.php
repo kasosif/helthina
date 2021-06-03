@@ -66,9 +66,15 @@
         <div id="sidebar-wrapper" style="border-radius: 50px;border-width: 5px;box-shadow: 0px 0px 8px rgba(33,37,41,0.15);border-top-left-radius: 0;border-bottom-left-radius: 0px;margin-top: 25px;">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"> <a href="#"><i class="fa fa-user"></i>&nbsp; &nbsp; &nbsp; {{auth()->user()->name}}&nbsp;</a></li>
+                @if(auth()->user()->role == 'ADMIN')
+                <li> <a class="dash-item-user" href="{{route('dash.home')}}" style="font-weight: bold;"><i class="fa fa-heart"></i>&nbsp; &nbsp; &nbsp;a</a></li>
+                <li> <a class="dash-item-user" href="{{route('dash.recipe')}}" style="font-weight: bold;"><i class="fa fa-bookmark"></i>&nbsp; &nbsp; &nbsp; b&nbsp;b</a></li>
+                <li> <a class="dash-item-user" href="{{route('dash.comment')}}" style="font-weight: bold;"><i class="fa fa-comment"></i>&nbsp; &nbsp; &nbsp;b</a></li>
+                @else
                 <li> <a class="dash-item-user" href="{{route('dash.home')}}" style="font-weight: bold;"><i class="fa fa-heart"></i>&nbsp; &nbsp; &nbsp;Articles favoris</a></li>
                 <li> <a class="dash-item-user" href="{{route('dash.recipe')}}" style="font-weight: bold;"><i class="fa fa-bookmark"></i>&nbsp; &nbsp; &nbsp; Recettes&nbsp;enregistrer</a></li>
                 <li> <a class="dash-item-user" href="{{route('dash.comment')}}" style="font-weight: bold;"><i class="fa fa-comment"></i>&nbsp; &nbsp; &nbsp;Commentaries</a></li>
+                @endif
             </ul>
         </div>
         <div class="page-content-wrapper">
