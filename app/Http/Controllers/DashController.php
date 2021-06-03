@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Adresse;
 use App\Article;
 use App\Recipe;
 use Illuminate\Http\Request;
@@ -60,10 +61,29 @@ class DashController extends Controller
         return redirect()->route('dash.gestionRecipe');
     }
 
-    public function deleteRecipe(Request $request, $article_id)
+    public function deleteRecipe(Request $request, $recipe_id)
     {
-        $articleToDelete = Recipe::find($article_id);
+        $articleToDelete = Recipe::find($recipe_id);
         $articleToDelete->delete();
         return redirect()->route('dash.gestionRecipe');
+    }
+
+    public function gestionAdresse()
+    {
+        $adresses = Adresse::all();
+        return view('dash.gestionAdresse', compact('adresses'));
+    }
+
+    public function ajouterAdresse(Request $request)
+    {
+        Adresse::create($request->except('image'));
+        return redirect()->route('dash.gestionAdresse');
+    }
+
+    public function deleteAdresse(Request $request, $recipe_id)
+    {
+        $articleToDelete = Adresse::find($recipe_id);
+        $articleToDelete->delete();
+        return redirect()->route('dash.gestionAdresse');
     }
 }

@@ -45,4 +45,7 @@ Route::group([
     Route::get('/gestion-recipe', 'DashController@gestionRecipe')->name('gestionRecipe');
     Route::post('/create-recipe', 'DashController@ajouterRecipe')->name('ajouterRecipe');
     Route::delete('/delete-recipe/{recipe_id}', 'DashController@deleteRecipe')->name('deleteRecipe');
+    Route::get('/gestion-adresse', 'DashController@gestionAdresse')->name('gestionAdresse');
+    Route::post('/create-adresse', 'DashController@ajouterAdresse')->name('ajouterAdresse');
+    Route::delete('/delete-adresse/{adresse_id}', 'DashController@deleteAdresse')->name('deleteAdresse');
 });
