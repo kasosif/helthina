@@ -6,6 +6,7 @@ use App\Adresse;
 use App\Article;
 use App\Comment;
 use App\Recipe;
+use App\RecipeRating;
 use App\WebAdresse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,6 +37,13 @@ class HomeController extends Controller
         return view('single_article',compact('article','articles_alike'));
     }
 
+    public function singlerecipe($recipe_id)
+    {
+        $recipe = Recipe::find($recipe_id);
+        $recipes_alike = Recipe::where('id','!=',$recipe->id)->where('category',$recipe->category)->take(3);
+        return view('single_recipe',compact('recipe','recipes_alike'));
+    }
+
     public function recettes($categorie)
     {
         $recipes = Recipe::where('category',$categorie)->latest()->paginate(4);
@@ -62,6 +70,31 @@ class HomeController extends Controller
     public function likeArticle(Request $request) {
         $article = Article::find($request->get('article_id'));
         $article->likes()->attach(auth()->id());
+        return redirect()->back();
+    }
+    public function rateRecipe(Request $request) {
+        $recipe = Recipe::find($request->recipe_id);
+        $rate = RecipeRating::where('user_id',auth()->id())->where('recipe_id',$recipe->id)->first();
+        if ($rate) {
+            $rate->mark = $request->mark;
+        } else {
+            $rate = new RecipeRating();
+            $rate->user_id = auth()->id();
+            $rate->recipe_id = $recipe->id;
+            $rate->mark = $request->mark;
+        }
+        $rate->save();
+        return redirect()->back();
+    }
+
+    public function favRecipe($id) {
+        $recipe = Recipe::find($id);
+        $recipe->favorites()->attach(auth()->id());
+        return redirect()->back();
+    }
+    public function unfavRecipe($id) {
+        $recipe = Recipe::find($id);
+        $recipe->favorites()->detach(auth()->id());
         return redirect()->back();
     }
 

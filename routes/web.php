@@ -21,6 +21,9 @@ Route::get('/recette/{id}','HomeController@singlerecipe')->name('front.single_re
 Route::get('/article/{id}','HomeController@singlearticle')->name('front.single_article');
 Route::post('/like-article','HomeController@likeArticle')->name('front.like_article');
 Route::post('/dislike-article','HomeController@dislikeArticle')->name('front.dislike_article');
+Route::post('/rate-recipe','HomeController@rateRecipe')->name('front.rate_recipe');
+Route::get('/fav-recipe/{id}','HomeController@favRecipe')->name('front.fav_recipe');
+Route::get('/unfav-recipe/{id}','HomeController@unfavRecipe')->name('front.unfav_recipe');
 Route::post('/comment-article','HomeController@commentArticle')->name('front.comment_article');
 Route::view('/whyhealthi','whyhealthi')->name('front.whyhealthy');
 Route::view('/nous','nous')->name('front.nous');

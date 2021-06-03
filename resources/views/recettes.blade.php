@@ -40,7 +40,12 @@
             @foreach($recipes as $recipe)
                 <div class="col-md-3 text-center recettes-box" data-aos="fade-up" data-aos-duration="500" data-aos-delay="250">
                     <img class="img-fluid ima" src="{{asset('uploads/recipe_images/'.$recipe->image)}}">
-                    <p style="margin-top: 25px;">Par : {{$recipe->author_name}}<br></p><a href="#"></a><a href="#"><i class="fa fa-bookmark" style="font-size: 28px;"></i></a>
+                    <p style="margin-top: 25px;">Par : {{$recipe->author_name}}<br></p>
+                    @if(auth()->user()->favorites()->where('recipes.id',$recipe->id)->exists())
+                        <a href="{{route('front.unfav_recipe',['id' => $recipe->id])}}"><i class="fa fa-bookmark" style="font-size: 28px;color: orange"></i></a>
+                    @else
+                        <a href="{{route('front.fav_recipe',['id' => $recipe->id])}}"><i class="fa fa-bookmark-o" style="font-size: 28px;"></i></a>
+                    @endif
                     <p style="color: var(--warning);margin-top: 25px;">
                         {!! generate_stars($recipe->getScore(),'<i class="fa fa-star" style="color: var(--yellow);"></i>','<i class="fa fa-star-o"></i>') !!}
                     </p>
