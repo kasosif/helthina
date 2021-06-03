@@ -17,7 +17,7 @@
         <tr>
             <td>{{$liked->title}} </td>
             <td>{{date('d-m-Y',strtotime($liked->created_at))}}</td>
-            <td><img class="img-fluid" data-bss-hover-animate="pulse" src="{{asset('uploads/web_adresse_images/'.$liked->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;"></td>
+            <td><img class="img-fluid" data-bss-hover-animate="pulse" src="{{asset('uploads/article_images/'.$liked->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;"></td>
             <td> <a class="btn btn-primary signin" role="button" href="{{route('front.single_article',['id' => $liked->id])}}"> Consulter </a></td>
         </tr>
         @endforeach
