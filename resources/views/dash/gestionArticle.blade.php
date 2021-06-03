@@ -3,6 +3,7 @@
 @section('csspage') @endsection
 @section('content')
 
+<h3>Gestion article</h3>
 <table class="table">
     <thead>
         <tr>
@@ -53,7 +54,7 @@
                         <div class="form-group">
                             <label for="title">Titre de l'article 2<span class="text-danger">*</span>
                             </label>
-                            <input type="text" required name="second_title" class="form-control" id="title" title="Titre de l'article " placeholder="Titre de l'article ">
+                            <input type="text" required name="second_title" class="form-control" id="title" title="Titre de l'article 2" placeholder="Titre de l'article 2">
                         </div>
                     </div>
                 </div>
@@ -61,9 +62,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label for="title">contenu de l'article <span class="text-danger">*</span>
+                            <label for="title">Contenu de l'article <span class="text-danger">*</span>
                             </label>
-                            <input type="text" required name="first_body" class="form-control" id="title" title="Titre de l'article " placeholder="Titre de l'article ">
+                            <input type="text" required name="first_body" class="form-control" id="title" title="Contenu de l'article " placeholder="Contenu de l'article ">
                         </div>
                     </div>
                 </div>
@@ -71,9 +72,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label for="title">continu de l'article 2<span class="text-danger">*</span>
+                            <label for="title">Contenu de l'article 2<span class="text-danger">*</span>
                             </label>
-                            <input type="text" required name="second_body" class="form-control" id="title" title="Titre de l'article " placeholder="Titre de l'article ">
+                            <input type="text" required name="second_body" class="form-control" id="title" title="Contenu de l'article 2" placeholder="Contenu de l'article 2">
                         </div>
                     </div>
                 </div>

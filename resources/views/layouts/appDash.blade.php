@@ -67,9 +67,9 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"> <a href="#"><i class="fa fa-user"></i>&nbsp; &nbsp; &nbsp; {{auth()->user()->name}}&nbsp;</a></li>
                 @if(auth()->user()->role == 'ADMIN')
-                <li> <a class="dash-item-user" href="{{route('dash.home')}}" style="font-weight: bold;"><i class="fa fa-heart"></i>&nbsp; &nbsp; &nbsp;a</a></li>
-                <li> <a class="dash-item-user" href="{{route('dash.recipe')}}" style="font-weight: bold;"><i class="fa fa-bookmark"></i>&nbsp; &nbsp; &nbsp; b&nbsp;b</a></li>
-                <li> <a class="dash-item-user" href="{{route('dash.comment')}}" style="font-weight: bold;"><i class="fa fa-comment"></i>&nbsp; &nbsp; &nbsp;b</a></li>
+                <li> <a class="dash-item-user" href="{{route('dash.gestionArticle')}}" style="font-weight: bold;"><i class="fa fa-heart"></i>&nbsp; &nbsp; &nbsp;Gestion&nbsp;articles</a></li>
+                <li> <a class="dash-item-user" href="{{route('dash.gestionRecipe')}}" style="font-weight: bold;"><i class="fa fa-bookmark"></i>&nbsp; &nbsp; &nbsp; Gestion&nbsp;recettes</a></li>
+                <li> <a class="dash-item-user" href="{{route('dash.comment')}}" style="font-weight: bold;"><i class="fa fa-comment"></i>&nbsp; &nbsp; &nbsp;Gestion&nbsp;adresses</a></li>
                 @else
                 <li> <a class="dash-item-user" href="{{route('dash.home')}}" style="font-weight: bold;"><i class="fa fa-heart"></i>&nbsp; &nbsp; &nbsp;Articles favoris</a></li>
                 <li> <a class="dash-item-user" href="{{route('dash.recipe')}}" style="font-weight: bold;"><i class="fa fa-bookmark"></i>&nbsp; &nbsp; &nbsp; Recettes&nbsp;enregistrer</a></li>
