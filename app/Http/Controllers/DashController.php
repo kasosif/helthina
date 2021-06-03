@@ -62,7 +62,7 @@ class DashController extends Controller
 
     public function deleteRecipe(Request $request, $article_id)
     {
-        $articleToDelete = Article::find($article_id);
+        $articleToDelete = Recipe::find($article_id);
         $articleToDelete->delete();
         return redirect()->route('dash.gestionRecipe');
     }
