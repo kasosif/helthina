@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Adresse;
 use App\Article;
+use App\Comment;
 use App\Recipe;
 use App\WebAdresse;
 use Illuminate\Http\Request;
@@ -28,6 +29,13 @@ class HomeController extends Controller
         return view('articles',compact('articles'));
     }
 
+    public function singlearticle($article_id)
+    {
+        $article = Article::find($article_id);
+        $articles_alike = Article::where('id','!=',$article->id)->take(3);
+        return view('single_article',compact('article','articles_alike'));
+    }
+
     public function recettes($categorie)
     {
         $recipes = Recipe::where('category',$categorie)->latest()->paginate(4);
@@ -49,5 +57,26 @@ class HomeController extends Controller
     public function forum()
     {
         return view('forum');
+    }
+
+    public function likeArticle(Request $request) {
+        $article = Article::find($request->get('article_id'));
+        $article->likes()->attach(auth()->id());
+        return redirect()->back();
+    }
+
+    public function dislikeArticle(Request $request) {
+        $article = Article::find($request->get('article_id'));
+        $article->likes()->detach(auth()->id());
+        return redirect()->back();
+    }
+
+    public function commentArticle(Request $request) {
+        $comment = new Comment();
+        $comment->article_id = $request->get('article_id');
+        $comment->user_id = auth()->id();
+        $comment->message = $request->get('message');
+        $comment->save();
+        return redirect()->back();
     }
 }
