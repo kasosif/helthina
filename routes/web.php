@@ -33,5 +33,7 @@ Route::group([
     'middleware' => ['auth'] ,
     'as' => 'dash.'
 ],function () {
-    Route::get('/', 'DashController@index')->name('home');
+    Route::get('/', 'DashController@accueil')->name('home');
+    Route::get('/recipe', 'DashController@savedRecipe')->name('recipe');
+    Route::get('/comment', 'DashController@comment')->name('comment');
 });
