@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Adresse;
 use App\Article;
 use App\Recipe;
+use App\WebAdresse;
 use Illuminate\Http\Request;
 
 class DashController extends Controller
@@ -85,5 +86,24 @@ class DashController extends Controller
         $articleToDelete = Adresse::find($recipe_id);
         $articleToDelete->delete();
         return redirect()->route('dash.gestionAdresse');
+    }
+
+    public function gestionWebAdresse()
+    {
+        $webAdresses = WebAdresse::all();
+        return view('dash.gestionWebAdresse', compact('webAdresses'));
+    }
+
+    public function ajouterWebAdresse(Request $request)
+    {
+        WebAdresse::create($request->except('image'));
+        return redirect()->route('dash.gestionWebAdresse');
+    }
+
+    public function deleteWebAdresse(Request $request, $web_address_id)
+    {
+        $articleToDelete = WebAdresse::find($web_address_id);
+        $articleToDelete->delete();
+        return redirect()->route('dash.gestionWebAdresse');
     }
 }

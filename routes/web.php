@@ -48,4 +48,7 @@ Route::group([
     Route::get('/gestion-adresse', 'DashController@gestionAdresse')->name('gestionAdresse');
     Route::post('/create-adresse', 'DashController@ajouterAdresse')->name('ajouterAdresse');
     Route::delete('/delete-adresse/{adresse_id}', 'DashController@deleteAdresse')->name('deleteAdresse');
+    Route::get('/gestion-web-adresse', 'DashController@gestionWebAdresse')->name('gestionWebAdresse');
+    Route::post('/create-web-adresse', 'DashController@ajouterWebAdresse')->name('ajouterWebAdresse');
+    Route::delete('/delete-web-adresse/{web_address_id}', 'DashController@deleteWebAdresse')->name('deleteWebAdresse');
 });

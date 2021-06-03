@@ -70,6 +70,7 @@
                 <li> <a class="dash-item-user" href="{{route('dash.gestionArticle')}}" style="font-weight: bold;"><i class="fa fa-heart"></i>&nbsp; &nbsp; &nbsp;Gestion&nbsp;articles</a></li>
                 <li> <a class="dash-item-user" href="{{route('dash.gestionRecipe')}}" style="font-weight: bold;"><i class="fa fa-bookmark"></i>&nbsp; &nbsp; &nbsp; Gestion&nbsp;recettes</a></li>
                 <li> <a class="dash-item-user" href="{{route('dash.gestionAdresse')}}" style="font-weight: bold;"><i class="fa fa-comment"></i>&nbsp; &nbsp; &nbsp;Gestion&nbsp;adresses</a></li>
+                <li> <a class="dash-item-user" href="{{route('dash.gestionWebAdresse')}}" style="font-weight: bold;"><i class="fa fa-comment"></i>&nbsp; &nbsp; &nbsp;Gestion&nbsp;webadresses</a></li>
                 @else
                 <li> <a class="dash-item-user" href="{{route('dash.home')}}" style="font-weight: bold;"><i class="fa fa-heart"></i>&nbsp; &nbsp; &nbsp;Articles favoris</a></li>
                 <li> <a class="dash-item-user" href="{{route('dash.recipe')}}" style="font-weight: bold;"><i class="fa fa-bookmark"></i>&nbsp; &nbsp; &nbsp; Recettes&nbsp;enregistrer</a></li>
