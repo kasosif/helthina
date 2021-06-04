@@ -92,7 +92,7 @@
                             <strong>
                                 <img src="{{asset('assets/img/user-avatar.png')}}" width="100px" style="text-align: center">
                                 <br>
-                                <span style="color: #5fbeaa">{{ucfirst(auth()->user()->role)}}</span> Menu
+                                <span style="color: #5fbeaa">{{ucfirst(auth()->user()->name)}}</span>
                             </strong>
                         </h4>
                     </li>
