@@ -2,27 +2,59 @@
 @section('title') Article favoris @endsection
 @section('csspage') @endsection
 @section('content')
+    <div class="row">
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-bg-color-icon card-box fadeInDown animated">
+                <div class="bg-icon bg-icon-info pull-left">
+                    <i class="ti-write text-info"></i>
+                </div>
+                <div class="text-right">
+                    <h3 class="text-dark"><b class="counter">{{$nb_articles}}</b></h3>
+                    <p class="text-muted">Total Articles</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Titre</th>
-            <th scope="col">Date de publication</th>
-            <th scope="col">Image</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($likedArticles as $liked)
-        <tr>
-            <td>{{$liked->title}} </td>
-            <td>{{date('d-m-Y',strtotime($liked->created_at))}}</td>
-            <td><img class="img-fluid" data-bss-hover-animate="pulse" src="{{asset('uploads/article_images/'.$liked->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;"></td>
-            <td> <a class="btn btn-primary signin" role="button" href="{{route('front.single_article',['id' => $liked->id])}}"> Consulter </a></td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-bg-color-icon card-box">
+                <div class="bg-icon bg-icon-pink pull-left">
+                    <i class="fa fa-cutlery text-pink"></i>
+                </div>
+                <div class="text-right">
+                    <h3 class="text-dark"><b class="counter">{{$nb_recettes}}</b></h3>
+                    <p class="text-muted">Total recettes</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-bg-color-icon card-box">
+                <div class="bg-icon bg-icon-purple pull-left">
+                    <i class="ti-map text-purple"></i>
+                </div>
+                <div class="text-right">
+                    <h3 class="text-dark"><b class="counter">{{$nb_addresses}}</b></h3>
+                    <p class="text-muted">Total adresses</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-bg-color-icon card-box">
+                <div class="bg-icon bg-icon-success pull-left">
+                    <i class="ti-world text-success"></i>
+                </div>
+                <div class="text-right">
+                    <h3 class="text-dark"><b class="counter">{{$nb_wadresses}}</b></h3>
+                    <p class="text-muted">Total Web Adresses</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 @section('jspage') @endsection

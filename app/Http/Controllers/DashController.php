@@ -7,14 +7,17 @@ use App\Article;
 use App\Recipe;
 use App\WebAdresse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DashController extends Controller
 {
     public function accueil()
     {
-        $user = auth()->user();
-        $likedArticles = $user->likes;
-        return view('dash.home', compact('likedArticles'));
+        $nb_articles = Article::count();
+        $nb_recettes = Recipe::count();
+        $nb_addresses = Adresse::count();
+        $nb_wadresses = WebAdresse::count();
+        return view('dash.home',compact('nb_articles','nb_recettes','nb_addresses','nb_wadresses'));
     }
 
     public function savedRecipe()
@@ -39,15 +42,26 @@ class DashController extends Controller
 
     public function ajouterArticle(Request $request)
     {
-        Article::create($request->except('image', 'second_image'));
-        return redirect()->route('dash.gestionArticle');
+        $article = Article::create($request->except('image', 'second_image'));
+        if ($image1 = $request->file('image')) {
+            $name = Str::random(8).'.'.$image1->getClientOriginalExtension();
+            $image1->move(public_path('uploads/article_images'),$name);
+            $article->image = $name;
+        }
+        if ($image2 = $request->file('second_image')) {
+            $name = Str::random(8).'.'.$image2->getClientOriginalExtension();
+            $image2->move(public_path('uploads/article_images'),$name);
+            $article->second_image = $name;
+        }
+        $article->save();
+        return redirect()->route('dash.gestionArticle')->with('success','Article ajouté avec succées');
     }
 
     public function deleteArticle(Request $request, $article_id)
     {
         $articleToDelete = Article::find($article_id);
         $articleToDelete->delete();
-        return redirect()->route('dash.gestionArticle');
+        return redirect()->route('dash.gestionArticle')->with('success','Article supprimé avec succées');
     }
 
     public function gestionRecipe()

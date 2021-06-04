@@ -1,102 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Healthina - @yield('title') </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{asset('assets/fonts/fontawesome5-overrides.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="{{asset('assets/css/slider.compiled.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jyhen">
+    <title>Healthina - @yield('title')</title>
+
+    <link href="{{asset('backassets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backassets/css/core.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backassets/css/components.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backassets/css/icons.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backassets/css/pages.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backassets/css/responsive.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="{{asset('backassets/js/modernizr.min.js')}}"></script>
+
     @yield('csspage')
+
 </head>
 
-<body class="body">
-    <nav class="navbar navbar-light navbar-expand-md sticky-top m-auto navigation-clean-search">
-        <div class="container"><a class="navbar-brand" href="{{route('front.home')}}"><img class="img-fluid" src="{{asset('assets/img/Asset%2010.png')}}" style="border-radius: 0px;margin-top: 0px;width: 51px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse text-center" id="navcol-1">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link @yield('acceuil_active')" href="{{route('front.home')}}">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link @yield('articles_active')" href="{{route('front.articles')}}">Articles</a></li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">Recettes</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{route('front.recettes', ['categorie' =>'vegetarien'])}}">végétarien<br></a>
-                            <a class="dropdown-item" href="{{route('front.recettes', ['categorie' =>'glutenFree'])}}">Sans gluten<br></a>
-                            <a class="dropdown-item" href="{{route('front.recettes', ['categorie' => 'PlantB'])}}">Plant-B</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-center" aria-expanded="false" data-toggle="dropdown" href="#">Guide</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" href="{{route('front.adresse')}}">Bonne adresse</a>
-                            <a class="dropdown-item" href="{{route('front.adresseWeb')}}">Bonne adresse web</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link @yield('forum_active')" href="{{route('front.forum')}}">Forum</a></li>
-                    <li class="nav-item" style="font-family: 'Niveau Grotesk';font-weight: 700;"></li>
-                </ul>
-                <form class="form-inline text-center d-flex d-sm-flex justify-content-center mx-auto justify-content-sm-center" target="_self">
-                    <div class="form-group text-center" style="background: #e7e7e7;border-radius: 50px;padding-left: 13px;">
-                        <label for="search-field"><i class="fa fa-search" style="color: rgb(99,99,99);font-size: 16px;"></i></label>
-                        <input class="form-control search-field" type="search" id="search-field" name="search">
-                    </div>
-                </form>
-                @guest
-                <a class="btn btn-outline-secondary login" role="button" href="{{route('login')}}">
-                    <i class="fa fa-user" style="font-size: 18px;"></i>
+<body class="fixed-left">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Top Bar Start -->
+    <div class="topbar">
+
+        <!-- LOGO -->
+        <div class="topbar-left">
+            <div class="text-center">
+                <a href="{{route('front.home')}}" class="logo">
+                    <img src="{{asset('assets/img/Asset 9.png')}}" alt="" style="width: 50px;">
                 </a>
-                <a class="btn btn-primary signin" role="button" href="{{route('register')}}">Rejoindre<br></a>
-                @else
-                <a class="btn btn-outline-secondary login" role="button" href="#">
-                    <i class="fa fa-user" style="font-size: 18px;"></i>
-                </a>
-                <a class="btn btn-primary signin" role="button" href="#" onclick="document.getElementById('logout-form').submit();">Log out<br></a>
-                <form id="logout-form" action="{{route('logout')}}" style="display: none;" method="post">
-                    @csrf
-                </form>
-                @endguest
+                <!-- Image Logo here -->
+                <!--<a href="index.html" class="logo">-->
+                <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
+                <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
+                <!--</a>-->
             </div>
         </div>
-    </nav>
-    <div id="wrapper">
-        <div id="sidebar-wrapper" style="border-radius: 50px;border-width: 5px;box-shadow: 0px 0px 8px rgba(33,37,41,0.15);border-top-left-radius: 0;border-bottom-left-radius: 0px;margin-top: 25px;">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand"> <a href="#"><i class="fa fa-user"></i>&nbsp; &nbsp; &nbsp; {{auth()->user()->name}}&nbsp;</a></li>
-                @if(auth()->user()->role == 'ADMIN')
-                <li> <a class="dash-item-user" href="{{route('dash.gestionArticle')}}" style="font-weight: bold;"><i class="fa fa-heart"></i>&nbsp; &nbsp; &nbsp;Gestion&nbsp;articles</a></li>
-                <li> <a class="dash-item-user" href="{{route('dash.gestionRecipe')}}" style="font-weight: bold;"><i class="fa fa-bookmark"></i>&nbsp; &nbsp; &nbsp; Gestion&nbsp;recettes</a></li>
-                <li> <a class="dash-item-user" href="{{route('dash.gestionAdresse')}}" style="font-weight: bold;"><i class="fa fa-comment"></i>&nbsp; &nbsp; &nbsp;Gestion&nbsp;adresses</a></li>
-                <li> <a class="dash-item-user" href="{{route('dash.gestionWebAdresse')}}" style="font-weight: bold;"><i class="fa fa-comment"></i>&nbsp; &nbsp; &nbsp;Gestion&nbsp;webadresses</a></li>
-                @else
-                <li> <a class="dash-item-user" href="{{route('dash.home')}}" style="font-weight: bold;"><i class="fa fa-heart"></i>&nbsp; &nbsp; &nbsp;Articles favoris</a></li>
-                <li> <a class="dash-item-user" href="{{route('dash.recipe')}}" style="font-weight: bold;"><i class="fa fa-bookmark"></i>&nbsp; &nbsp; &nbsp; Recettes&nbsp;enregistrer</a></li>
-                <li> <a class="dash-item-user" href="{{route('dash.comment')}}" style="font-weight: bold;"><i class="fa fa-comment"></i>&nbsp; &nbsp; &nbsp;Commentaries</a></li>
-                @endif
-            </ul>
-        </div>
-        <div class="page-content-wrapper">
-            <div class="container-fluid"><a class="btn btn-light" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-angle-right" style="font-size: 21px;"></i></a>
-                <div class="row">
-                    <div class="col-md-12">
-                        @yield('content')
+
+        <!-- Button mobile view to collapse sidebar menu -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="">
+                    <div class="pull-left">
+                        <button class="button-menu-mobile open-left waves-effect waves-light" style="color: #000">
+                            <i class="md md-menu"></i>
+                        </button>
+                        <span class="clearfix"></span>
                     </div>
+
+
+                    <ul class="nav navbar-nav navbar-right pull-right">
+                        <li class="dropdown top-menu-item-xs">
+                            <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="{{asset('assets/img/user-avatar.png')}}" alt="user-img" class="img-circle"> </a>
+                            <ul class="dropdown-menu">
+                                <li><a onclick="document.getElementById('logout-form').submit();" href="javascript:void(0)"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
+                                <form id="logout-form" action="{{route('logout')}}" style="display: none;" method="post">
+                                    @csrf
+                                </form>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
+                <!--/.nav-collapse -->
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('assets/js/bs-init.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
-    <script src="{{asset('assets/js/javascript.js')}}"></script>
-    @yield('jspage')
-</body>
+    <!-- Top Bar End -->
 
+
+    <!-- ========== Left Sidebar Start ========== -->
+
+    <div class="left side-menu">
+        <div class="sidebar-inner slimscrollleft">
+            <!--- Divider -->
+            <div id="sidebar-menu">
+                <ul>
+
+                    <li class="menu-title" >
+                        <h4 style="text-align: center">
+                            <strong>
+                                <img src="{{asset('assets/img/user-avatar.png')}}" width="100px" style="text-align: center">
+                                <br>
+                                <span style="color: #5fbeaa">{{ucfirst(auth()->user()->role)}}</span> Menu
+                            </strong>
+                        </h4>
+                    </li>
+
+                    <li>
+                        <a href="{{route('dash.gestionArticle')}}" class="waves-effect">
+                            <i class="ti-write"></i> <span> Gestion articles </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('dash.gestionRecipe')}}" class="waves-effect">
+                            <i class="fa fa-cutlery"></i> <span> Gestion recettes </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('dash.gestionAdresse')}}" class="waves-effect">
+                            <i class="ti-map"></i> <span>Gestion adresses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('dash.gestionWebAdresse')}}" class="waves-effect">
+                            <i class="ti-world"></i> <span> Gestion webadresses </span>
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+                @yield('content')
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        <footer class="footer">
+            © {{date('Y')}}. All rights reserved to Healthina.
+        </footer>
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Right content here -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<script>
+    var resizefunc = [];
+</script>
+
+<!-- jQuery  -->
+<script src="{{asset('backassets/js/jquery.min.js')}}"></script>
+<script src="{{asset('backassets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('backassets/js/detect.js')}}"></script>
+<script src="{{asset('backassets/js/fastclick.js')}}"></script>
+<script src="{{asset('backassets/js/jquery.slimscroll.js')}}"></script>
+<script src="{{asset('backassets/js/jquery.blockUI.js')}}"></script>
+<script src="{{asset('backassets/js/waves.js')}}"></script>
+<script src="{{asset('backassets/js/wow.min.js')}}"></script>
+<script src="{{asset('backassets/js/jquery.nicescroll.js')}}"></script>
+<script src="{{asset('backassets/js/jquery.scrollTo.min.js')}}"></script>
+
+
+<script src="{{asset('backassets/js/jquery.core.js')}}"></script>
+<script src="{{asset('backassets/js/jquery.app.js')}}"></script>
+@yield('jspage')
+</body>
 </html>
