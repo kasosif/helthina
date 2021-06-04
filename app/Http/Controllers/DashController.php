@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Adresse;
 use App\Article;
 use App\Recipe;
+use App\Step;
 use App\WebAdresse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -72,15 +73,27 @@ class DashController extends Controller
 
     public function ajouterRecipe(Request $request)
     {
-        Recipe::create($request->except('image'));
-        return redirect()->route('dash.gestionRecipe');
+        $recette = Recipe::create($request->except('image','etapes'));
+        if ($image1 = $request->file('image')) {
+            $name = Str::random(8).'.'.$image1->getClientOriginalExtension();
+            $image1->move(public_path('uploads/recipe_images'),$name);
+            $recette->image = $name;
+        }
+        $recette->save();
+        foreach ($request->get('etapes') as $textetape) {
+            Step::create([
+                'body' => $textetape,
+                'recipe_id' => $recette->id
+            ]);
+        }
+        return redirect()->route('dash.gestionRecipe')->with('success','Recette ajoutée avec succées');;
     }
 
     public function deleteRecipe(Request $request, $recipe_id)
     {
         $articleToDelete = Recipe::find($recipe_id);
         $articleToDelete->delete();
-        return redirect()->route('dash.gestionRecipe');
+        return redirect()->route('dash.gestionRecipe')->with('success','Recette supprimée avec succées');
     }
 
     public function gestionAdresse()
@@ -91,15 +104,21 @@ class DashController extends Controller
 
     public function ajouterAdresse(Request $request)
     {
-        Adresse::create($request->except('image'));
-        return redirect()->route('dash.gestionAdresse');
+        $adresse = Adresse::create($request->except('image'));
+        if ($image1 = $request->file('image')) {
+            $name = Str::random(8).'.'.$image1->getClientOriginalExtension();
+            $image1->move(public_path('uploads/adresse_images'),$name);
+            $adresse->image = $name;
+        }
+        $adresse->save();
+        return redirect()->route('dash.gestionAdresse')->with('success','Adresse ajoutée avec succées');
     }
 
     public function deleteAdresse(Request $request, $recipe_id)
     {
         $articleToDelete = Adresse::find($recipe_id);
         $articleToDelete->delete();
-        return redirect()->route('dash.gestionAdresse');
+        return redirect()->route('dash.gestionAdresse')->with('success','Adresse supprimée avec succées');
     }
 
     public function gestionWebAdresse()
@@ -110,14 +129,20 @@ class DashController extends Controller
 
     public function ajouterWebAdresse(Request $request)
     {
-        WebAdresse::create($request->except('image'));
-        return redirect()->route('dash.gestionWebAdresse');
+        $wadresse = WebAdresse::create($request->except('image'));
+        if ($image1 = $request->file('image')) {
+            $name = Str::random(8).'.'.$image1->getClientOriginalExtension();
+            $image1->move(public_path('uploads/web_adresse_images'),$name);
+            $wadresse->image = $name;
+        }
+        $wadresse->save();
+        return redirect()->route('dash.gestionWebAdresse')->with('success','Adresse Web ajoutée avec succées');
     }
 
     public function deleteWebAdresse(Request $request, $web_address_id)
     {
         $articleToDelete = WebAdresse::find($web_address_id);
         $articleToDelete->delete();
-        return redirect()->route('dash.gestionWebAdresse');
+        return redirect()->route('dash.gestionWebAdresse')->with('success','Adresse Web supprimée avec succées');
     }
 }
