@@ -104,11 +104,17 @@
     <script src="{{asset('backassets/plugins/notifyjs/js/notify.js')}}"></script>
     <script src="{{asset('backassets/plugins/notifications/notify-metro.js')}}"></script>
     <script>
+        var gArrayFonts = ['Poppins','Poppins-Bold','Poppins-Black','Poppins-Extrabold','Poppins-Extralight','Poppins-Light','Poppins-Medium','Poppins-Semibold','Poppins-Thin'];
         $('.summernote').summernote({
             height: 350,                 // set editor height
             minHeight: null,             // set minimum height of editor
             maxHeight: null,             // set maximum height of editor
-            focus: false                 // set focus to editable area after initializing summernote
+            focus: false,
+            fontNames: gArrayFonts,
+            fontNamesIgnoreCheck: gArrayFonts,
+            fontSizes: ['8', '9', '10', '11', '12', '13', '14', '15', '16', '18', '20', '22' , '24', '28', '32', '36', '40', '48'],
+            followingToolbar: false,
+            dialogsInBody: true,
         });
         @if(session()->has('success'))
         $.Notification.notify('success','top right','Youpi', '{{session()->get('success')}}');
