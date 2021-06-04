@@ -1,24 +1,42 @@
 @extends('layouts.appDash')
-@section('title') Comment @endsection
+@section('title') Mes Commentaires @endsection
 @section('csspage') @endsection
 @section('content')
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <h4 class="m-t-0 header-title"><b>Mes Commentaires</b></h4>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Commentaire</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($comments as $comment)
-        <tr>
-            <td>{{$comment->message}} </td>
-            <td> <a class="btn btn-primary signin" role="button" href="{{route('front.single_article',['id' => $comment->article_id])}}"> Consulter </a></td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
+                @if($comments->count())
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Commentaire</th>
+                            <th>Article</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($comments as $comment)
+                            <tr>
+                                <td>
+                                    {{$comment->message}}
+                                </td>
+                                <td>{{$comment->article->title}} </td>
+                                <td >
+                                    <a class="btn btn-primary" role="button" href="{{route('front.single_article',['id' => $comment->article->id])}}"> <i class="fa fa-eye"></i> </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <div class="alert alert-info">
+                        Aucun Commentaire trouvé
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 @endsection
 @section('jspage') @endsection

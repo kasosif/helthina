@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function accueil()
     {
-        $latest_articles = Article::latest()->take(3);
+        $latest_articles = Article::latest()->take(3)->get();
         $most_rated_recipes = Recipe::select('recipes.id','recipes.title','recipes.image','recipes.description','recipe_ratings.mark',DB::raw('COUNT(*)'))
             ->leftJoin('recipe_ratings','recipes.id','recipe_ratings.recipe_id')
             ->groupBy('recipe_ratings.mark','recipes.id')
@@ -33,14 +33,14 @@ class HomeController extends Controller
     public function singlearticle($article_id)
     {
         $article = Article::find($article_id);
-        $articles_alike = Article::where('id','!=',$article->id)->take(3);
+        $articles_alike = Article::where('id','!=',$article->id)->take(3)->get();
         return view('single_article',compact('article','articles_alike'));
     }
 
     public function singlerecipe($recipe_id)
     {
         $recipe = Recipe::find($recipe_id);
-        $recipes_alike = Recipe::where('id','!=',$recipe->id)->where('category',$recipe->category)->take(3);
+        $recipes_alike = Recipe::where('id','!=',$recipe->id)->where('category',$recipe->category)->take(3)->get();
         return view('single_recipe',compact('recipe','recipes_alike'));
     }
 

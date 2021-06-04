@@ -21,6 +21,12 @@ class DashController extends Controller
         return view('dash.home',compact('nb_articles','nb_recettes','nb_addresses','nb_wadresses'));
     }
 
+    public function likedArticles() {
+        $user = auth()->user();
+        $articles = $user->likes;
+        return view('dash.article', compact('articles'));
+    }
+
     public function savedRecipe()
     {
         $user = auth()->user();

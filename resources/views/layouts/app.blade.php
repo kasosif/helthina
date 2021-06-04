@@ -50,7 +50,7 @@
                     </a>
                     <a class="btn btn-primary signin" role="button" href="{{route('register')}}">Rejoindre<br></a>
                 @else
-                    <a class="btn btn-outline-secondary login" role="button" href="{{route('dash.home')}}">
+                    <a class="btn btn-outline-secondary login" role="button" @if(auth()->user()->role == "ADMIN") href="{{route('dash.home')}}" @else href="{{route('dash.article')}}" @endif>
                         <i class="fa fa-user" style="font-size: 18px;"></i>
                     </a>
                     <a class="btn btn-primary signin" role="button" href="#" onclick="document.getElementById('logout-form').submit();">Log out<br></a>

@@ -97,26 +97,44 @@
                         </h4>
                     </li>
 
-                    <li>
-                        <a href="{{route('dash.gestionArticle')}}" class="waves-effect">
-                            <i class="ti-write"></i> <span> Gestion articles </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('dash.gestionRecipe')}}" class="waves-effect">
-                            <i class="fa fa-cutlery"></i> <span> Gestion recettes </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('dash.gestionAdresse')}}" class="waves-effect">
-                            <i class="ti-map"></i> <span>Gestion adresses</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('dash.gestionWebAdresse')}}" class="waves-effect">
-                            <i class="ti-world"></i> <span> Gestion webadresses </span>
-                        </a>
-                    </li>
+                    @if(auth()->user()->role == "ADMIN")
+                        <li>
+                            <a href="{{route('dash.gestionArticle')}}" class="waves-effect">
+                                <i class="ti-write"></i> <span> Gestion articles </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('dash.gestionRecipe')}}" class="waves-effect">
+                                <i class="fa fa-cutlery"></i> <span> Gestion recettes </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('dash.gestionAdresse')}}" class="waves-effect">
+                                <i class="ti-map"></i> <span>Gestion adresses</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('dash.gestionWebAdresse')}}" class="waves-effect">
+                                <i class="ti-world"></i> <span> Gestion webadresses </span>
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{route('dash.article')}}" class="waves-effect">
+                                <i class="ti-write"></i> <span>Articles aimé</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('dash.recipe')}}" class="waves-effect">
+                                <i class="fa fa-cutlery"></i> <span>Recettes favorites</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('dash.comment')}}" class="waves-effect">
+                                <i class="ti-map"></i> <span>Commentaires</span>
+                            </a>
+                        </li>
+                    @endif
 
                 </ul>
                 <div class="clearfix"></div>

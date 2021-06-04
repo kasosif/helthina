@@ -37,6 +37,7 @@ Route::group([
     'as' => 'dash.'
 ], function () {
     Route::get('/', 'DashController@accueil')->name('home');
+    Route::get('/article', 'DashController@likedArticles')->name('article');
     Route::get('/recipe', 'DashController@savedRecipe')->name('recipe');
     Route::get('/comment', 'DashController@comment')->name('comment');
     Route::get('/gestion-article', 'DashController@gestionArticle')->name('gestionArticle');
