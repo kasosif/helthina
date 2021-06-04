@@ -40,44 +40,51 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row js-readmore-button-container">
                 <div class="col-md-12">
-                    <h1>{{$article->second_title}}<br></h1>
+                    <a class="js-readmore-button" href="#" style="font-weight: bold;">Lire la suite &nbsp;&nbsp;</a>
                 </div>
             </div>
-            <div class="row" style="padding: 50px;">
-                <div class="col">
-                    <img class="img-fluid box" id="imgarticle2" src="{{asset('uploads/article_images/'.$article->second_image)}}">
+            <div class="js-more-container" style="display: none;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>{{$article->second_title}}<br></h1>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <p>
-                        {!! $article->second_body !!}
-                    </p>
-                    <div class="row">
-                        <div class="col" style="margin-top: 15px;">
-                            @guest
-                                <button class="btn btn-primary" id="like" type="button">
-                                    Like {{$article->likes()->count()}} <i class="fa fa-heart"></i>
-                                </button>
-                                <button class="btn btn-light js-toggle-comments" id="comment" type="button" style="margin-left: 15px;">
-                                    {{$article->comments()->count()}} Comments&nbsp;<i class="fa fa-comment"></i>
-                                </button>
-                            @else
-                                <form style="display: inline" @if(auth()->user()->likes()->where('articles.id',$article->id)->exists()) action="{{route('front.dislike_article')}}" @else action="{{route('front.like_article')}}" @endif method="post">
-                                    @csrf
-                                    <input type="hidden" name="article_id" value="{{$article->id}}">
-                                    <button class="btn btn-primary" id="like" type="submit">
-                                        @if(auth()->user()->likes()->where('articles.id',$article->id)->exists())
-                                            UnLike {{$article->likes()->count()}} <i class="fa fa-heart"></i>
-                                        @else
-                                            Like {{$article->likes()->count()}} <i class="fa fa-heart-o"></i>
-                                        @endif
+                <div class="row" style="padding: 50px;">
+                    <div class="col">
+                        <img class="img-fluid box" id="imgarticle2" src="{{asset('uploads/article_images/'.$article->second_image)}}">
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            {!! $article->second_body !!}
+                        </p>
+                        <div class="row">
+                            <div class="col" style="margin-top: 15px;">
+                                @guest
+                                    <button class="btn btn-primary" id="like" type="button">
+                                        Like {{$article->likes()->count()}} <i class="fa fa-heart"></i>
                                     </button>
-                                </form>
-                                <button class="btn btn-light js-toggle-comments" id="comment" type="button" style="margin-left: 15px;">
-                                    {{$article->comments()->count()}} Comments&nbsp;<i class="fa fa-comment"></i>
-                                </button>
-                            @endguest
+                                    <button class="btn btn-light js-toggle-comments" id="comment" type="button" style="margin-left: 15px;">
+                                        {{$article->comments()->count()}} Comments&nbsp;<i class="fa fa-comment"></i>
+                                    </button>
+                                @else
+                                    <form style="display: inline" @if(auth()->user()->likes()->where('articles.id',$article->id)->exists()) action="{{route('front.dislike_article')}}" @else action="{{route('front.like_article')}}" @endif method="post">
+                                        @csrf
+                                        <input type="hidden" name="article_id" value="{{$article->id}}">
+                                        <button class="btn btn-primary" id="like" type="submit">
+                                            @if(auth()->user()->likes()->where('articles.id',$article->id)->exists())
+                                                UnLike {{$article->likes()->count()}} <i class="fa fa-heart"></i>
+                                            @else
+                                                Like {{$article->likes()->count()}} <i class="fa fa-heart-o"></i>
+                                            @endif
+                                        </button>
+                                    </form>
+                                    <button class="btn btn-light js-toggle-comments" id="comment" type="button" style="margin-left: 15px;">
+                                        {{$article->comments()->count()}} Comments&nbsp;<i class="fa fa-comment"></i>
+                                    </button>
+                                @endguest
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -183,6 +190,11 @@
                 }, 2000);
                 return false;
             });
+            $('.js-readmore-button').click(function (e) {
+                e.preventDefault();
+                $('.js-readmore-button-container').remove();
+                $('.js-more-container').fadeIn();
+            })
         });
     </script>
 @endsection
