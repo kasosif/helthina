@@ -7,8 +7,11 @@ use App\Article;
 use App\Comment;
 use App\Recipe;
 use App\Step;
+use App\User;
 use App\WebAdresse;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class DashController extends Controller
@@ -101,6 +104,46 @@ class DashController extends Controller
         return view('dash.gestionRecipe', compact('recipes'));
     }
 
+    public function gestionUser()
+    {
+        $users = User::where('role','!=','ADMIN')->get();
+        return view('dash.gestionUser', compact('users'));
+    }
+
+    public function ajouterUser(Request $request)
+    {
+        $pass = "123456";
+        $user = new User();
+        $user->password = Hash::make($pass);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        return redirect()->back()->with('success','Membre Ajouté avec succées');
+    }
+
+    public function modifUser($id) {
+        $user = User::find($id);
+        return view('dash.modif_user',compact('user'));
+    }
+
+    public function deleteUser(Request $request, $user_id)
+    {
+        $userToDelete = User::find($user_id);
+        $userToDelete->delete();
+        return redirect()->route('dash.gestionUser')->with('success','Membre supprimé avec succées');
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $pass = "123456";
+        $user->password = Hash::make($pass);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        return redirect()->route('dash.gestionUser')->with('success','Membre Modifié avec succées');
+    }
+
     public function ajouterRecipe(Request $request)
     {
         $recette = Recipe::create($request->except('image','etapes'));
@@ -164,7 +207,7 @@ class DashController extends Controller
         $adresse = Adresse::create($request->except('image'));
         if ($image1 = $request->file('image')) {
             $name = Str::random(8).'.'.$image1->getClientOriginalExtension();
-            $image1->move(public_path('uploads/adresse_images'),$name);
+            $image1->move(storage_path('app/public/uploads/adresse_images'),$name);
             $adresse->image = $name;
         }
         $adresse->save();
@@ -189,7 +232,7 @@ class DashController extends Controller
         $wadresse = WebAdresse::create($request->except('image'));
         if ($image1 = $request->file('image')) {
             $name = Str::random(8).'.'.$image1->getClientOriginalExtension();
-            $image1->move(public_path('uploads/web_adresse_images'),$name);
+            $image1->move(storage_path('app/public/uploads/web_adresse_images'),$name);
             $wadresse->image = $name;
         }
         $wadresse->save();

@@ -99,6 +99,11 @@
 
                     @if(auth()->user()->role == "ADMIN")
                         <li>
+                            <a href="{{route('dash.gestionUser')}}" class="waves-effect">
+                                <i class="fa fa-users"></i> <span> Gestion membres </span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{route('dash.gestionArticle')}}" class="waves-effect">
                                 <i class="ti-write"></i> <span> Gestion articles </span>
                             </a>

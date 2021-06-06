@@ -58,6 +58,11 @@ Route::group([
     Route::get('/gestion-web-adresse', 'DashController@gestionWebAdresse')->name('gestionWebAdresse');
     Route::post('/create-web-adresse', 'DashController@ajouterWebAdresse')->name('ajouterWebAdresse');
     Route::delete('/delete-web-adresse/{web_address_id}', 'DashController@deleteWebAdresse')->name('deleteWebAdresse');
+    Route::get('/gestion-user', 'DashController@gestionUser')->name('gestionUser');
+    Route::get('/modif-user/{id}', 'DashController@modifUser')->name('editUser');
+    Route::put('/update-user/{id}', 'DashController@updateUser')->name('updateUser');
+    Route::post('/create-user', 'DashController@ajouterUser')->name('ajouterUser');
+    Route::delete('/delete-user/{id}', 'DashController@deleteUser')->name('deleteUser');
 });
 
 //Glide Image Route
