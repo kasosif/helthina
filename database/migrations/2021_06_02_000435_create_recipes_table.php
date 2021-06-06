@@ -22,8 +22,8 @@ class CreateRecipesTable extends Migration
             $table->integer('preparation_time');
             $table->integer('number_person');
             $table->text('body');
-            $table->string('description');
-            $table->string('tip');
+            $table->longText('description');
+            $table->longText('tip');
             $table->timestamps();
         });
     }
