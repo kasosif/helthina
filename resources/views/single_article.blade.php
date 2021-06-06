@@ -15,7 +15,6 @@
         }
     </style>
 @endsection
-@section('articles_active') active @endsection
 @section('content')
     <article data-aos="fade-up">
         <div class="container">

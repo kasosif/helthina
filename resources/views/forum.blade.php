@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title') Forum @endsection
 @section('csspage') @endsection
-@section('forum_active') active @endsection
 @section('content')
 
 <div class="container" style="margin-top: 50px;">

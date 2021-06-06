@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title') Articles @endsection
 @section('csspage') @endsection
-@section('articles_active') active @endsection
 @section('content')
 <div class="container">
     <div class="row">

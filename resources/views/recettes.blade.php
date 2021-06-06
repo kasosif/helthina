@@ -14,7 +14,6 @@
     @endswitch
 @endsection
 @section('csspage') @endsection
-@section('recettes_active') active @endsection
 @section('content')
     <section style="text-align: center;background: rgba(252,252,252,0);">
         <div class="container" style="text-align: center;">
