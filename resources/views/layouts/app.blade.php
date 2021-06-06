@@ -39,10 +39,10 @@
                     <li class="nav-item"><a class="nav-link @yield('forum_active')" href="{{route('front.forum')}}">Forum</a></li>
                     <li class="nav-item" style="font-family: 'Niveau Grotesk';font-weight: 700;"></li>
                 </ul>
-                <form class="form-inline text-center d-flex d-sm-flex justify-content-center mx-auto justify-content-sm-center" target="_self">
+                <form action="{{route('search')}}" class="form-inline text-center d-flex d-sm-flex justify-content-center mx-auto justify-content-sm-center" target="_self">
                     <div class="form-group text-center" style="background: #e7e7e7;border-radius: 50px;padding-left: 13px;">
                         <label for="search-field"><i class="fa fa-search" style="color: rgb(99,99,99);font-size: 16px;"></i></label>
-                        <input class="form-control search-field" type="search" id="search-field" name="search"></div>
+                        <input value="{{request()->input('search')}}" class="form-control search-field" type="search" id="search-field" name="search"></div>
                 </form>
                 @guest
                     <a class="btn btn-outline-secondary login" role="button" href="{{route('login')}}">

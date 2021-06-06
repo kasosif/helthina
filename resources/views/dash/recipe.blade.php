@@ -26,7 +26,7 @@
                                 <td>{{$recipe->author_name}}</td>
                                 <td>{{$recipe->category}}</td>
                                 <td>{{date('d-m-Y',strtotime($recipe->created_at))}}</td>
-                                <td><img class="img-fluid" data-bss-hover-animate="pulse" src="{{asset('uploads/recipe_images/'.$recipe->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;"></td>
+                                <td><img class="img-fluid" data-bss-hover-animate="pulse" src="{{image_url('uploads/recipe_images/'.$recipe->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;"></td>
                                 <td >
                                     <a class="btn btn-primary" role="button" href="{{route('front.single_recipe',['id' => $recipe->id])}}"> <i class="fa fa-eye"></i> </a>
                                 </td>

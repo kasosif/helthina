@@ -23,12 +23,13 @@
                         @foreach($articles as $liked)
                             <tr>
                                 <td>
-                                    <img class="img-fluid" data-bss-hover-animate="pulse" src="{{asset('uploads/article_images/'.$liked->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;">
+                                    <img class="img-fluid" data-bss-hover-animate="pulse" src="{{image_url('uploads/article_images/'.$liked->image,100,100)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;">
                                 </td>
                                 <td>{{$liked->title}} </td>
                                 <td>{{date('d-m-Y',strtotime($liked->created_at))}}</td>
                                 <td >
                                     <a class="btn btn-primary" role="button" href="{{route('front.single_article',['id' => $liked->id])}}"> <i class="fa fa-eye"></i> </a>
+                                    <a class="btn btn-info" role="button" href="{{route('dash.modifArticle',['id' => $liked->id])}}"> <i class="fa fa-pencil"></i> </a>
                                     <form style="display: inline" method="POST" action="{{route('dash.deleteArticle',['article_id' => $liked->id])}}">
                                         @csrf
                                         @method('delete')

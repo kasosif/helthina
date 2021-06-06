@@ -22,7 +22,7 @@
                     @foreach($webAdresses as $adress)
                     <tr>
                         <td>
-                            <img class="img-fluid" data-bss-hover-animate="pulse" src="{{asset('uploads/web_adresse_images/'.$adress->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;">
+                            <img class="img-fluid" data-bss-hover-animate="pulse" src="{{image_url('uploads/web_adresse_images/'.$adress->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;">
                         </td>
                         <td><a href="{{$adress->map_link}}"><i class="ti-world" style="font-size: 28px;"></i></a></td>
                         <td class="row">

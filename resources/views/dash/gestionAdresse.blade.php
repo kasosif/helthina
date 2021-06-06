@@ -13,9 +13,9 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Image</th>
                         <th>Nom</th>
                         <th>Emplacement</th>
-                        <th>Image</th>
                         <th>Liens</th>
                         <th>Actions</th>
                     </tr>
@@ -24,7 +24,7 @@
                     @foreach($adresses as $adress)
                     <tr>
                         <td>
-                            <img class="img-fluid" data-bss-hover-animate="pulse" src="{{asset('uploads/adresse_images/'.$adress->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;">
+                            <img class="img-fluid" data-bss-hover-animate="pulse" src="{{image_url('uploads/adresse_images/'.$adress->image,100,100)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;">
                         </td>
                         <td>{{$adress->name}} </td>
                         <td>{{$adress->localisation}}</td>

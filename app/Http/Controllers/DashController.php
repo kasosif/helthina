@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Adresse;
 use App\Article;
+use App\Comment;
 use App\Recipe;
 use App\Step;
 use App\WebAdresse;
@@ -52,16 +53,39 @@ class DashController extends Controller
         $article = Article::create($request->except('image', 'second_image'));
         if ($image1 = $request->file('image')) {
             $name = Str::random(8).'.'.$image1->getClientOriginalExtension();
-            $image1->move(public_path('uploads/article_images'),$name);
+            $image1->move(storage_path('app/public/uploads/article_images'),$name);
             $article->image = $name;
         }
         if ($image2 = $request->file('second_image')) {
             $name = Str::random(8).'.'.$image2->getClientOriginalExtension();
-            $image2->move(public_path('uploads/article_images'),$name);
+            $image2->move(storage_path('app/public/uploads/article_images'),$name);
             $article->second_image = $name;
         }
         $article->save();
         return redirect()->route('dash.gestionArticle')->with('success','Article ajouté avec succées');
+    }
+
+    public function modifArticle($id) {
+        $article = Article::find($id);
+        return view('dash.modif_article',compact('article'));
+    }
+
+    public function updateArticle(Request $request,int $id)
+    {
+        $article = Article::find($id);
+        $article->update($request->except('image', 'second_image'));
+        if ($image1 = $request->file('image')) {
+            $name = Str::random(8).'.'.$image1->getClientOriginalExtension();
+            $image1->move(storage_path('app/public/uploads/article_images'),$name);
+            $article->image = $name;
+        }
+        if ($image2 = $request->file('second_image')) {
+            $name = Str::random(8).'.'.$image2->getClientOriginalExtension();
+            $image2->move(storage_path('app/public/uploads/article_images'),$name);
+            $article->second_image = $name;
+        }
+        $article->save();
+        return redirect()->route('dash.gestionArticle')->with('success','Article modifié avec succées');
     }
 
     public function deleteArticle(Request $request, $article_id)
@@ -82,7 +106,7 @@ class DashController extends Controller
         $recette = Recipe::create($request->except('image','etapes'));
         if ($image1 = $request->file('image')) {
             $name = Str::random(8).'.'.$image1->getClientOriginalExtension();
-            $image1->move(public_path('uploads/recipe_images'),$name);
+            $image1->move(storage_path('app/public/uploads/recipe_images'),$name);
             $recette->image = $name;
         }
         $recette->save();
@@ -93,6 +117,33 @@ class DashController extends Controller
             ]);
         }
         return redirect()->route('dash.gestionRecipe')->with('success','Recette ajoutée avec succées');;
+    }
+
+    public function modifRecipe($id) {
+        $recipe = Recipe::find($id);
+        return view('dash.modif_recipe',compact('recipe'));
+    }
+
+    public function updateRecipe(Request $request,$id)
+    {
+        $recette = Recipe::find($id);
+        $recette->update($request->except('image','etapes'));
+        if ($image1 = $request->file('image')) {
+            $name = Str::random(8).'.'.$image1->getClientOriginalExtension();
+            $image1->move(storage_path('app/public/uploads/recipe_images'),$name);
+            $recette->image = $name;
+        }
+        $recette->save();
+        if ($request->etapes) {
+            Step::where('recipe_id',$recette->id)->delete();
+            foreach ($request->get('etapes') as $textetape) {
+                Step::create([
+                    'body' => $textetape,
+                    'recipe_id' => $recette->id
+                ]);
+            }
+        }
+        return redirect()->route('dash.gestionRecipe')->with('success','Recette Modifiée avec succées');;
     }
 
     public function deleteRecipe(Request $request, $recipe_id)
@@ -150,5 +201,15 @@ class DashController extends Controller
         $articleToDelete = WebAdresse::find($web_address_id);
         $articleToDelete->delete();
         return redirect()->route('dash.gestionWebAdresse')->with('success','Adresse Web supprimée avec succées');
+    }
+
+    public function deleteComment($id) {
+        $comment = Comment::find($id);
+        if (auth()->user()->id == $comment->user_id) {
+            $comment->delete();
+        }else {
+            abort(401);
+        }
+        return redirect()->back()->with('success','Commentaire supprimée avec succées');
     }
 }

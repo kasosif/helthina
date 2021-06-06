@@ -12,7 +12,7 @@
     <div class="row article-bar" data-aos="fade-up" data-aos-delay="250">
         @foreach($articles as $article)
             <div class="col-md-3 artcl-box">
-                <img class="img-fluid box" src="{{asset('uploads/article_images/'.$article->image)}}">
+                <img class="img-fluid box" src="{{image_url('uploads/article_images/'.$article->image,239,239)}}">
                 <a href="{{route('front.single_article',['id' => $article->id])}}">
                     <p class="artcle-sous">{{$article->title}}</p>
                 </a>

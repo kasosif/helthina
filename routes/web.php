@@ -30,6 +30,7 @@ Route::view('/nous', 'nous')->name('front.nous');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/search', 'HomeController@search')->name('search');
 
 Route::group([
     'prefix' => 'dash',
@@ -41,11 +42,16 @@ Route::group([
     Route::get('/recipe', 'DashController@savedRecipe')->name('recipe');
     Route::get('/comment', 'DashController@comment')->name('comment');
     Route::get('/gestion-article', 'DashController@gestionArticle')->name('gestionArticle');
+    Route::get('/modif-article/{id}', 'DashController@modifArticle')->name('modifArticle');
+    Route::put('/update-article/{id}', 'DashController@updateArticle')->name('updateArticle');
     Route::post('/create-article', 'DashController@ajouterArticle')->name('ajouterArticle');
     Route::delete('/delete-article/{article_id}', 'DashController@deleteArticle')->name('deleteArticle');
     Route::get('/gestion-recipe', 'DashController@gestionRecipe')->name('gestionRecipe');
+    Route::get('/modif-recipe/{id}', 'DashController@modifRecipe')->name('modifRecipe');
+    Route::put('/update-recipe/{id}', 'DashController@updateRecipe')->name('updateRecipe');
     Route::post('/create-recipe', 'DashController@ajouterRecipe')->name('ajouterRecipe');
     Route::delete('/delete-recipe/{recipe_id}', 'DashController@deleteRecipe')->name('deleteRecipe');
+    Route::get('/delete-comment/{id}', 'DashController@deleteComment')->name('deleteComment');
     Route::get('/gestion-adresse', 'DashController@gestionAdresse')->name('gestionAdresse');
     Route::post('/create-adresse', 'DashController@ajouterAdresse')->name('ajouterAdresse');
     Route::delete('/delete-adresse/{adresse_id}', 'DashController@deleteAdresse')->name('deleteAdresse');
@@ -53,3 +59,6 @@ Route::group([
     Route::post('/create-web-adresse', 'DashController@ajouterWebAdresse')->name('ajouterWebAdresse');
     Route::delete('/delete-web-adresse/{web_address_id}', 'DashController@deleteWebAdresse')->name('deleteWebAdresse');
 });
+
+//Glide Image Route
+Route::get('/images/{path}','ImageController@show')->where('path', '.*');

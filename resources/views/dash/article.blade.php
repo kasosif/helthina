@@ -21,7 +21,7 @@
                         @foreach($articles as $liked)
                             <tr>
                                 <td>
-                                    <img class="img-fluid" data-bss-hover-animate="pulse" src="{{asset('uploads/article_images/'.$liked->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;">
+                                    <img class="img-fluid" data-bss-hover-animate="pulse" src="{{image_url('uploads/article_images/'.$liked->image)}}" alt="alt text here" style="border: 1px solid rgb(135,135,135) ; height: 100px;">
                                 </td>
                                 <td>{{$liked->title}} </td>
                                 <td>{{date('d-m-Y',strtotime($liked->created_at))}}</td>

@@ -13,14 +13,29 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public function search(Request $request) {
+        $search = $request->query('search');
+        $recipes = Recipe::where('title','like','%'.$search.'%')->get();
+        $rcount = $recipes->count();
+        $articles = Article::where('title','like','%'.$search.'%')->get();
+        $acount = $articles->count();
+        $adresses = Adresse::where('name','like','%'.$search.'%')->get();
+        $adcount = $adresses->count();
+        $wadresses = WebAdresse::where('map_link','like','%'.$search.'%')->get();
+        $wcount = $wadresses->count();
+        $count = $rcount + $acount + $adcount + $wcount;
+        return view('search_result',compact('recipes','articles','adresses','wadresses','count','search'));
+    }
     public function accueil()
     {
         $latest_articles = Article::latest()->take(3)->get();
-        $most_rated_recipes = Recipe::select('recipes.id','recipes.title','recipes.image','recipes.description','recipe_ratings.mark',DB::raw('COUNT(*)'))
-            ->leftJoin('recipe_ratings','recipes.id','recipe_ratings.recipe_id')
-            ->groupBy('recipe_ratings.mark','recipes.id')
+        $most_rated = RecipeRating::select('recipe_id',DB::raw('AVG(mark) as moyenne'))
+            ->groupBy('recipe_id')
+            ->orderBy('moyenne','desc')
             ->take(3)
-            ->get();
+            ->pluck('recipe_id')
+            ->toArray();
+        $most_rated_recipes = Recipe::whereIn('id',$most_rated)->get();
         return view('homepage',compact('latest_articles','most_rated_recipes'));
     }
 

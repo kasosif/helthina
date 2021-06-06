@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="col" id="image">
-                    <img class="img-fluid img-artc1 box" src="{{asset('uploads/article_images/'.$article->image)}}">
+                    <img class="img-fluid img-artc1 box" src="{{image_url('uploads/article_images/'.$article->image)}}">
                 </div>
             </div>
             <div class="row">
@@ -53,7 +53,7 @@
                 </div>
                 <div class="row" style="padding: 50px;">
                     <div class="col">
-                        <img class="img-fluid box" id="imgarticle2" src="{{asset('uploads/article_images/'.$article->second_image)}}">
+                        <img class="img-fluid box" id="imgarticle2" src="{{image_url('uploads/article_images/'.$article->second_image)}}">
                     </div>
                     <div class="col-md-6">
                         <p>
@@ -61,14 +61,21 @@
                         </p>
                         <div class="row">
                             <div class="col" style="margin-top: 15px;">
-                                @guest
+                                 @if(!auth()->check())
                                     <button class="btn btn-primary" id="like" type="button">
                                         Like {{$article->likes()->count()}} <i class="fa fa-heart"></i>
                                     </button>
                                     <button class="btn btn-light js-toggle-comments" id="comment" type="button" style="margin-left: 15px;">
                                         {{$article->comments()->count()}} Comments&nbsp;<i class="fa fa-comment"></i>
                                     </button>
-                                @else
+                                @elseif(auth()->user()->role == "ADMIN")
+                                    <button class="btn btn-primary" id="like" type="button">
+                                        Like {{$article->likes()->count()}} <i class="fa fa-heart"></i>
+                                    </button>
+                                    <button class="btn btn-light js-toggle-comments" id="comment" type="button" style="margin-left: 15px;">
+                                        {{$article->comments()->count()}} Comments&nbsp;<i class="fa fa-comment"></i>
+                                    </button>
+                                 @else
                                     <form style="display: inline" @if(auth()->user()->likes()->where('articles.id',$article->id)->exists()) action="{{route('front.dislike_article')}}" @else action="{{route('front.like_article')}}" @endif method="post">
                                         @csrf
                                         <input type="hidden" name="article_id" value="{{$article->id}}">
@@ -83,7 +90,7 @@
                                     <button class="btn btn-light js-toggle-comments" id="comment" type="button" style="margin-left: 15px;">
                                         {{$article->comments()->count()}} Comments&nbsp;<i class="fa fa-comment"></i>
                                     </button>
-                                @endguest
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -95,9 +102,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card" id="CommentBox" style="display: none;">
-                    @guest
+                    @if(!auth()->check())
                         <div class="alert alert-warning">
                             Il faut <a href="{{route('login')}}"> vous connectez</a> pour laissez un commentaire
+                        </div>
+                    @elseif(auth()->user()->role == "ADMIN")
+                        <div class="alert alert-warning">
+                            Vous êtes un administrateur vous ne pouvez pas laisser un commentaire
                         </div>
                     @else
                         <div class="card-body">
@@ -155,7 +166,7 @@
                                 </li>
                             </ul>
                         </div>
-                    @endguest
+                    @endif
                 </div>
             </div>
         </div>
@@ -169,7 +180,7 @@
         <div class="row">
             @foreach($articles_alike as $a)
                 <div class="col">
-                    <img class="img-fluid box" data-bss-hover-animate="pulse" src="{{asset('uploads/article_images/'.$a->image)}}">
+                    <img class="img-fluid box" data-bss-hover-animate="pulse" src="{{image_url('uploads/article_images/'.$a->image,350,270)}}">
                     <a href="{{route('front.single_article',['id' => $a->id])}}">
                         <p style="margin-top: 25px;">
                             {{$a->title}}<br>

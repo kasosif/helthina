@@ -6,27 +6,27 @@
             <div class="col">
                 <h1>
                     {{$recipe->title}}&nbsp;
-                    @if(auth()->user()->favorites()->where('recipes.id',$recipe->id)->exists())
-                        <a href="{{route('front.unfav_recipe',['id' => $recipe->id])}}" class="btn btn-success" id="save" type="button">unsave&nbsp;<i class="fa fa-bookmark save" id="unsave"></i></a>
-                    @else
-                        <a href="{{route('front.fav_recipe',['id' => $recipe->id])}}" class="btn btn-success" id="save" type="button">save&nbsp;<i class="fa fa-bookmark-o save" id="save"></i></a>
+                    @if(!auth()->check())
+                        <a href="{{route('login')}}"><i class="fa fa-bookmark-o" style="font-size: 28px;"></i></a>
+                    @elseif(auth()->user()->role != "ADMIN")
+                        @if(auth()->user()->favorites()->where('recipes.id',$recipe->id)->exists())
+                            <a href="{{route('front.unfav_recipe',['id' => $recipe->id])}}" class="btn btn-success" id="save" type="button">unsave&nbsp;<i class="fa fa-bookmark save" id="unsave"></i></a>
+                        @else
+                            <a href="{{route('front.fav_recipe',['id' => $recipe->id])}}" class="btn btn-success" id="save" type="button">save&nbsp;<i class="fa fa-bookmark-o save" id="save"></i></a>
+                        @endif
                     @endif
+
                 </h1>
                 <p><strong>{{$recipe->number_person}} personne(s)&nbsp;&nbsp;</strong><i class="fa fa-user" style="color: var(--orange);"></i><strong>&nbsp; | {{$recipe->preparation_time}} Min&nbsp;&nbsp;</strong><i class="fa fa-clock-o" style="color: var(--orange);"></i><br /></p>
                 {!! $recipe->body !!}
-                {{--                <p class="ingred">Ingrédient<br /></p>--}}
-                {{--                <p class="ingred">2 grosses tomates ,coupées tranches&nbsp;<br /></p>--}}
-                {{--                <p class="ingred">2 cuillères à soupe de basilic frais haché finement<br /></p>--}}
-                {{--                <p class="ingred">1 gousse d'ail émincée<br /></p>--}}
-                {{--                <p class="ingred">2 cuillères à soupe d'huile d'olive extra vierge<br /></p>--}}
-                {{--                <p class="ingred">1 1/4 tasse de chapelure fraîche grossière d'une baguette<br /></p>--}}
-                {{--                <p class="ingred">1/3 tasse de parmesan râpé<br /></p>--}}
             </div>
-            <div class="col-md-6"><img class="img-fluid" src="{{asset('uploads/recipe_images/'.$recipe->image)}}" /></div>
+            <div class="col-md-6">
+                <img class="img-fluid" src="{{image_url('uploads/recipe_images/'.$recipe->image)}}" />
+            </div>
         </div>
-        <h1>Préparation<br /></h1>
-        <div class="row prep-box" data-aos="fade-up">
-            <div class="col">
+        <h1 style="margin-top: 3rem;">Préparation</h1>
+        <div class="row" data-aos="fade-up">
+            <div class="col" style="margin-top: -20px !important;">
                 @foreach($recipe->steps as $step)
                     <h1 style="font-size: 29px; margin-top: 50px;"><i class="fa fa-check" style="color: var(--green);"></i>&nbsp;Etape {{$loop->iteration}}</h1>
                     <p>{{$step->body}}<br /></p>
@@ -41,6 +41,9 @@
             <div class="col-md-6"><img class="img-fluid" src="{{asset('assets/img/cooking2.png')}}" /></div>
         </div>
     </div>
+    @if(!auth()->check())
+    @elseif(auth()->user()->role == "ADMIN")
+    @else
     <div class="container">
         <div class="row mt-3">
             <div class="col">
@@ -76,19 +79,33 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="article-header">Autres recettes</h1>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 100px;">
             @foreach($recipes_alike as $re)
-                <div class="col-md-4">
-                    <img class="img-fluid" src="{{asset('uploads/recipe_images/'.$re->image)}}" />
-                    <a href="{{route('front.single_recipe',['id' => $re->id])}}">
-                        <p class="artcle-sous">{{$re->title}}<br /></p>
-                    </a>
+                <div class="col-md-4 text-center @if($loop->iteration % 2 == 0) recettes-box2 @else recettes-box @endif " data-aos="fade-up" data-aos-duration="500" data-aos-delay="250">
+                    <img class="img-fluid ima" src="{{image_url('uploads/recipe_images/'.$re->image)}}">
+                    <p style="margin-top: 25px;">Par : {{$re->author_name}}<br></p>
+                    @if(!auth()->check())
+                        <a href="{{route('login')}}"><i class="fa fa-bookmark-o" style="font-size: 28px;"></i></a>
+                    @elseif(auth()->user()->role != "ADMIN")
+                        @if(auth()->user()->favorites()->where('recipes.id',$recipe->id)->exists())
+                            <a href="{{route('front.unfav_recipe',['id' => $recipe->id])}}" class="btn btn-success" id="save" type="button">unsave&nbsp;<i class="fa fa-bookmark save" id="unsave"></i></a>
+                        @else
+                            <a href="{{route('front.fav_recipe',['id' => $recipe->id])}}" class="btn btn-success" id="save" type="button">save&nbsp;<i class="fa fa-bookmark-o save" id="save"></i></a>
+                        @endif
+                    @endif
+                    <p style="color: var(--warning);margin-top: 25px;">
+                        {!! generate_stars($re->getScore(),'<i class="fa fa-star" style="color: var(--yellow);"></i>','<i class="fa fa-star-o"></i>') !!}
+                    </p>
+                    <h1 class="recettes-titre">{{$re->title}}<br></h1>
+                    <p class="recettes-soustitre">{{$re->category}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{$re->preparation_time}}min<br></p>
+                    <a class="btn btn-secondary" role="button" data-bss-hover-animate="pulse" style="font-family: 'poppins', serif;border-radius: 25px;width: 120.25px;" href="{{route('front.single_recipe',['id' => $re->id])}}">Voir</a>
                 </div>
             @endforeach
         </div>
