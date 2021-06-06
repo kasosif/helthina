@@ -26,7 +26,7 @@
                                 <td>{{$u->email}} </td>
                                 <td>{{date('d-m-Y',strtotime($u->created_at))}}</td>
                                 <td >
-                                    <a class="btn btn-info" role="button" href="{{route('dash.editUser',['id' => $u->id])}}"> <i class="fa fa-pencil"></i> </a>
+{{--                                    <a class="btn btn-info" role="button" href="{{route('dash.editUser',['id' => $u->id])}}"> <i class="fa fa-pencil"></i> </a>--}}
                                     <form style="display: inline" method="POST" action="{{route('dash.deleteUser',['id' => $u->id])}}">
                                         @csrf
                                         @method('delete')
@@ -46,30 +46,30 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card-box">
-                <h4 class="m-t-0 header-title"><b>Ajouter un utilisateur</b></h4>
+{{--    <div class="row">--}}
+{{--        <div class="col-sm-12">--}}
+{{--            <div class="card-box">--}}
+{{--                <h4 class="m-t-0 header-title"><b>Ajouter un utilisateur</b></h4>--}}
 
-                <div class="row" style="margin-top: 15px;">
-                    <form role="form" action="{{route('dash.ajouterUser')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="name">Nom Complet</label>
-                            <input type="text" name="name" required id="name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" required id="email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-success btn-block" type="submit">Ajouter Membre</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--                <div class="row" style="margin-top: 15px;">--}}
+{{--                    <form role="form" action="{{route('dash.ajouterUser')}}" method="post" enctype="multipart/form-data">--}}
+{{--                        @csrf--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="name">Nom Complet</label>--}}
+{{--                            <input type="text" name="name" required id="name" class="form-control">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="email">Email</label>--}}
+{{--                            <input type="text" name="email" required id="email" class="form-control">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <button class="btn btn-success btn-block" type="submit">Ajouter Membre</button>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
 
 @endsection
