@@ -52,6 +52,7 @@
                         <h3 class="title">{{__('Laissez une evaluation')}}</h3>
                     </div>
                     <div class="card-body">
+                    @if(!auth()->user()->recipeRatings()->where('recipe_id', $recipe->id)->exists())
                         <div class="review-form-block">
                             <form class="form-msg" action="{{route('front.rate_recipe')}}" method="post">
                                 @csrf()
@@ -74,6 +75,9 @@
                                 </div>
                             </form>
                         </div>
+                    @else
+                    <div class="alert alert-success">Vous avez déjà noté cette recette</div>
+                    @endif
                     </div>
                 </div>
             </div>

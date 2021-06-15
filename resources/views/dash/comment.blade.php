@@ -25,7 +25,7 @@
                                 <td>{{$comment->article->title}} </td>
                                 <td >
                                     <a class="btn btn-primary" role="button" href="{{route('front.single_article',['id' => $comment->article->id])}}"> <i class="fa fa-eye"></i> </a>
-                                    <a class="btn btn-danger" role="button" href="{{route('dash.deleteComment',['id' => $comment->id])}}"> <i class="fa fa-trash"></i> </a>
+                                    <a class="btn btn-danger" role="button" href="#" onclick="show_supp_modal('Voulez-vous vraiment supprimer ce commentaire ?', '{{route('dash.deleteComment',['id' => $comment->id])}}', false)"> <i class="fa fa-trash"></i> </a>
                                 </td>
                             </tr>
                         @endforeach

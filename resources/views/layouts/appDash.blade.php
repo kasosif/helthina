@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,76 +29,76 @@
 
 <body class="fixed-left">
 
-<!-- Begin page -->
-<div id="wrapper">
+    <!-- Begin page -->
+    <div id="wrapper">
 
-    <!-- Top Bar Start -->
-    <div class="topbar">
+        <!-- Top Bar Start -->
+        <div class="topbar">
 
-        <!-- LOGO -->
-        <div class="topbar-left">
-            <div class="text-center">
-                <a href="{{route('front.home')}}" class="logo">
-                    <img src="{{asset('assets/img/Asset 9.png')}}" alt="" style="width: 50px;">
-                </a>
-                <!-- Image Logo here -->
-                <!--<a href="index.html" class="logo">-->
-                <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
-                <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
-                <!--</a>-->
-            </div>
-        </div>
-
-        <!-- Button mobile view to collapse sidebar menu -->
-        <div class="navbar navbar-default" role="navigation">
-            <div class="container">
-                <div class="">
-                    <div class="pull-left">
-                        <button class="button-menu-mobile open-left waves-effect waves-light" style="color: #000">
-                            <i class="md md-menu"></i>
-                        </button>
-                        <span class="clearfix"></span>
-                    </div>
-
-
-                    <ul class="nav navbar-nav navbar-right pull-right">
-                        <li class="dropdown top-menu-item-xs">
-                            <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="{{asset('assets/img/user-avatar.png')}}" alt="user-img" class="img-circle"> </a>
-                            <ul class="dropdown-menu">
-                                <li><a onclick="document.getElementById('logout-form').submit();" href="javascript:void(0)"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
-                                <form id="logout-form" action="{{route('logout')}}" style="display: none;" method="post">
-                                    @csrf
-                                </form>
-                            </ul>
-                        </li>
-                    </ul>
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <div class="text-center">
+                    <a href="{{route('front.home')}}" class="logo">
+                        <img src="{{asset('assets/img/Asset 9.png')}}" alt="" style="width: 50px;">
+                    </a>
+                    <!-- Image Logo here -->
+                    <!--<a href="index.html" class="logo">-->
+                    <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
+                    <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
+                    <!--</a>-->
                 </div>
-                <!--/.nav-collapse -->
+            </div>
+
+            <!-- Button mobile view to collapse sidebar menu -->
+            <div class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="">
+                        <div class="pull-left">
+                            <button class="button-menu-mobile open-left waves-effect waves-light" style="color: #000">
+                                <i class="md md-menu"></i>
+                            </button>
+                            <span class="clearfix"></span>
+                        </div>
+
+
+                        <ul class="nav navbar-nav navbar-right pull-right">
+                            <li class="dropdown top-menu-item-xs">
+                                <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="{{asset('assets/img/user-avatar.png')}}" alt="user-img" class="img-circle"> </a>
+                                <ul class="dropdown-menu">
+                                    <li><a onclick="document.getElementById('logout-form').submit();" href="javascript:void(0)"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
+                                    <form id="logout-form" action="{{route('logout')}}" style="display: none;" method="post">
+                                        @csrf
+                                    </form>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Top Bar End -->
+        <!-- Top Bar End -->
 
 
-    <!-- ========== Left Sidebar Start ========== -->
+        <!-- ========== Left Sidebar Start ========== -->
 
-    <div class="left side-menu">
-        <div class="sidebar-inner slimscrollleft">
-            <!--- Divider -->
-            <div id="sidebar-menu">
-                <ul>
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <!--- Divider -->
+                <div id="sidebar-menu">
+                    <ul>
 
-                    <li class="menu-title" >
-                        <h4 style="text-align: center">
-                            <strong>
-                                <img src="{{asset('assets/img/user-avatar.png')}}" width="100px" style="text-align: center">
-                                <br>
-                                <span style="color: #5fbeaa">{{ucfirst(auth()->user()->name)}}</span>
-                            </strong>
-                        </h4>
-                    </li>
+                        <li class="menu-title">
+                            <h4 style="text-align: center">
+                                <strong>
+                                    <img src="{{asset('assets/img/user-avatar.png')}}" width="100px" style="text-align: center">
+                                    <br>
+                                    <span style="color: #5fbeaa">{{ucfirst(auth()->user()->name)}}</span>
+                                </strong>
+                            </h4>
+                        </li>
 
-                    @if(auth()->user()->role == "ADMIN")
+                        @if(auth()->user()->role == "ADMIN")
                         <li>
                             <a href="{{route('dash.gestionUser')}}" class="waves-effect">
                                 <i class="fa fa-users"></i> <span> Gestion membres </span>
@@ -123,7 +124,7 @@
                                 <i class="ti-world"></i> <span> Gestion webadresses </span>
                             </a>
                         </li>
-                    @else
+                        @else
                         <li>
                             <a href="{{route('dash.article')}}" class="waves-effect">
                                 <i class="ti-write"></i> <span>Articles aimé</span>
@@ -139,60 +140,98 @@
                                 <i class="ti-map"></i> <span>Commentaires</span>
                             </a>
                         </li>
-                    @endif
+                        @endif
 
-                </ul>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
+        </div>
+        <!-- Left Sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container">
+                    @yield('content')
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+
+            <footer class="footer">
+                © {{date('Y')}}. All rights reserved to Healthina.
+            </footer>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
+
+        <div class="modal js-supp-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmation de Supprission</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="js-supp-text"></p>
+                    </div>
+                    <form class="js-supp-form" method="post">
+                        @csrf
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Confirmer</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- Left Sidebar End -->
+    <!-- END wrapper -->
 
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
-    <div class="content-page">
-        <!-- Start content -->
-        <div class="content">
-            <div class="container">
-                @yield('content')
-            </div> <!-- container -->
+    <script>
+        var resizefunc = [];
+    </script>
 
-        </div> <!-- content -->
-
-        <footer class="footer">
-            © {{date('Y')}}. All rights reserved to Healthina.
-        </footer>
-
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Right content here -->
-    <!-- ============================================================== -->
+    <!-- jQuery  -->
+    <script src="{{asset('backassets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('backassets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('backassets/js/detect.js')}}"></script>
+    <script src="{{asset('backassets/js/fastclick.js')}}"></script>
+    <script src="{{asset('backassets/js/jquery.slimscroll.js')}}"></script>
+    <script src="{{asset('backassets/js/jquery.blockUI.js')}}"></script>
+    <script src="{{asset('backassets/js/waves.js')}}"></script>
+    <script src="{{asset('backassets/js/wow.min.js')}}"></script>
+    <script src="{{asset('backassets/js/jquery.nicescroll.js')}}"></script>
+    <script src="{{asset('backassets/js/jquery.scrollTo.min.js')}}"></script>
 
 
-</div>
-<!-- END wrapper -->
-
-<script>
-    var resizefunc = [];
-</script>
-
-<!-- jQuery  -->
-<script src="{{asset('backassets/js/jquery.min.js')}}"></script>
-<script src="{{asset('backassets/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('backassets/js/detect.js')}}"></script>
-<script src="{{asset('backassets/js/fastclick.js')}}"></script>
-<script src="{{asset('backassets/js/jquery.slimscroll.js')}}"></script>
-<script src="{{asset('backassets/js/jquery.blockUI.js')}}"></script>
-<script src="{{asset('backassets/js/waves.js')}}"></script>
-<script src="{{asset('backassets/js/wow.min.js')}}"></script>
-<script src="{{asset('backassets/js/jquery.nicescroll.js')}}"></script>
-<script src="{{asset('backassets/js/jquery.scrollTo.min.js')}}"></script>
-
-
-<script src="{{asset('backassets/js/jquery.core.js')}}"></script>
-<script src="{{asset('backassets/js/jquery.app.js')}}"></script>
-@yield('jspage')
+    <script src="{{asset('backassets/js/jquery.core.js')}}"></script>
+    <script src="{{asset('backassets/js/jquery.app.js')}}"></script>
+    <script>
+        function show_supp_modal(text, url, isDeleteMethod = true) {
+            $('.js-supp-text').text(text);
+            $('.js-supp-form').attr('action', url);
+            if (isDeleteMethod) {
+                $('.js-supp-form').attr('method', 'POST');
+                if ($('.js-delete-method').length == 0) {
+                    $('.js-supp-form').append('<input name="_method" value="DELETE" class="js-delete-method">');
+                }
+            } else {
+                $('.js-supp-form').attr('method', 'GET');
+                $('.js-delete-method').remove();
+            }
+            $('.js-supp-modal').modal('show');
+        }
+    </script>
+    @yield('jspage')
 </body>
+
 </html>

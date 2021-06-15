@@ -61,7 +61,7 @@
                         <div class="row">
                             <div class="col" style="margin-top: 15px;">
                                  @if(!auth()->check())
-                                    <button class="btn btn-primary" id="like" type="button">
+                                    <button class="btn btn-primary js-toggle-comments" id="like" type="button">
                                         Like {{$article->likes()->count()}} <i class="fa fa-heart"></i>
                                     </button>
                                     <button class="btn btn-light js-toggle-comments" id="comment" type="button" style="margin-left: 15px;">
@@ -103,11 +103,11 @@
                 <div class="card" id="CommentBox" style="display: none;">
                     @if(!auth()->check())
                         <div class="alert alert-warning">
-                            Il faut <a href="{{route('login')}}"> vous connectez</a> pour laissez un commentaire
+                            Il faut <a href="{{route('login')}}?ref={{Request::url()}}"> vous connectez</a> pour laissez un commentaire ou aimez
                         </div>
                     @elseif(auth()->user()->role == "ADMIN")
                         <div class="alert alert-warning">
-                            Vous êtes un administrateur vous ne pouvez pas laisser un commentaire
+                            Vous êtes un administrateur vous ne pouvez pas laissez un commentaire ou aimez
                         </div>
                     @else
                         <div class="card-body">
